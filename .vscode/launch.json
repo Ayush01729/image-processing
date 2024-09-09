@@ -1,0 +1,45 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Flask",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "flask",
+            // "program": "$/home/ayush/Documents/test_app/app.py",
+            "console": "integratedTerminal",
+            "env": {
+                "FLASK_APP": "/home/ayush/Documents/test_app/back/main.py",
+                "FLASK_ENV": "development",
+            },
+            "args": [
+                "run",
+                "--no-reload"
+            ],
+            "jinja": true
+        },
+        {
+            "name": "Celery",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "celery",
+            // "program": "$/home/ayush/Documents/test_app/tasks.py",
+            "console": "integratedTerminal",
+            "args": [
+                "-A",
+                "tasks",
+                "worker",
+                "-l",
+                "INFO",
+                "-B",
+            ]
+        }
+    ],
+    "compounds": [
+        {
+          "name": "Flask & Celery",
+          "configurations": ["Flask", "Celery"],
+          "stopAll": true
+        }
+      ]
+}
