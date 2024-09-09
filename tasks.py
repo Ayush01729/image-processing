@@ -29,39 +29,6 @@ OUTPUT_FOLDER = "processed_images"
 
 mongo = MongoClient(os.environ.get("MONGO_URI"),server_api = ServerApi('1'))
 
-# def poll_image_status(image_id, max_retries=10, delay=5):
-#     """
-#     Polls the status of the uploaded image.
-    
-#     :param image_id: ID of the image to check.
-#     :param max_retries: Maximum number of retries.
-#     :param delay: Delay between retries in seconds.
-#     :return: Status of the image.
-#     """
-#     url = f"https://im.ge/api/1/image/{image_id}"  # Adjust URL if needed
-#     headers = {'X-API-Key': 'YOUR_API_KEY'}
-    
-#     for _ in range(max_retries):
-#         try:
-#             response = requests.get(url, headers=headers)
-#             response.raise_for_status()
-#             data = response.json()
-#             if data['status_code'] == 200:
-#                 return data['image']['url']  # Return the image URL if processing is complete
-#             elif data['status_code'] == 500:  # Example of an error state
-#                 return "Upload Failed"
-#         except requests.RequestException as e:
-#             logger.error(f"Error polling image status: {e}")
-#         time.sleep(delay)
-    
-#     return "Failed to retrieve image status"
-
-@celery_app.task(name='tasks.apiworld')
-def apiworld():
-    logger.info('Demo task started!')
-    time.sleep(10)  # Simulate a task that takes 10 seconds to complete
-    logger.info('Demo task completed!')
-    return 'Demo task completed!'
 
 @celery_app.task(name='tasks.img_process')
 def img_process(request_id, csv_data):

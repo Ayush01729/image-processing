@@ -31,13 +31,8 @@ if not os.path.exists(OUTPUT_FOLDER):
 @app.route('/')
 def index():
     return "OK"
-    # return render_template('index.html')
 
-@app.route('/apiworld')
-def apiworld_route():
-    task = apiworld.delay()
-    print('Task Launched!')
-    return jsonify({"success": True, "task_id": task.id})
+
 
 @app.route('/check_task/<task_id>', methods=['GET'])
 def check_task(task_id):
@@ -101,43 +96,6 @@ def download_file(request_id):
     else:
         return Response("File not found or processing failed.", status=404)
 
-
-# @app.route('/webhook/<request_id>', methods=['GET'])
-# def webhook(request_id):
-#     try:
-#         # Make a request to the download endpoint for the request_id
-#         download_url = f'http://localhost:5000/download/{request_id}'  # Replace with the correct URL
-#         response = requests.get(download_url)
-        
-#         if response.status_code == 200:
-#             # The file was successfully downloaded, process it as needed
-#             print(f"Webhook called and download successful for request_id: {request_id}")
-#         else:
-#             print(f"Failed to download the file for request_id: {request_id}, Status code: {response.status_code}")
-
-#     except Exception as e:
-#         print(f"Error in webhook processing for request_id: {request_id} - {str(e)}")
-
-#     return jsonify({"message": "Webhook processed"}), 200
-
-@app.route('/webhook/imge', methods=['POST'])
-def imge_webhook():
-    data = request.json
-    # logger.info('Received webhook data: %s', data)
-
-    # Extract relevant information from the webhook data
-    image_id = data.get('image_id')
-    status = data.get('status')
-    image_url = data.get('image_url')
-    request_id = data.get('request_id')
-
-    # Update MongoDB with the received data
-    mongo.db.processed_images.update_one(
-        {"request_id": request_id},
-        {"$set": {"status": status, "image_url": image_url}}
-    )
-
-    return jsonify({'message': 'Webhook received'}), 200
 
     
     
