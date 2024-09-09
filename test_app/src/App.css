@@ -1,0 +1,80 @@
+/* App.css */
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f7f9fc;
+  margin: 0;
+  padding: 0;
+}
+
+.App {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+h1 {
+  font-size: 28px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.upload-section {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 15px;
+  margin: 15px 0;
+  background-color: #f5f5f5;
+}
+
+.upload-section input[type='file'] {
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+button {
+  margin: 5px;
+  padding: 10px 15px;
+  font-size: 14px;
+  color: white;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.status-message {
+  font-size: 16px;
+  color: #666;
+  margin: 10px 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+a button {
+  background-color: #28a745;
+}
+
+a button:hover {
+  background-color: #218838;
+}
+
+.add-upload-button {
+  background-color: #ffc107;
+}
+
+.add-upload-button:hover {
+  background-color: #e0a800;
+}
